@@ -1,7 +1,7 @@
 # rpi3-overlay
-Gentoo overlay (ebuild repository) for the Raspberry Pi 3 Model B and B+. Used by my bootable [`gentoo-on-rpi3-64bit`](https://github.com/sakaki-/gentoo-on-rpi3-64bit) image.
+Gentoo overlay (ebuild repository) for the Raspberry Pi 3 Model B and B+. Used by my bootable [`gentoo-on-rpi3-64bit`](https://github.com/unixunion/gentoo-on-rpi3-64bit) image.
 
-<img src="https://raw.githubusercontent.com/sakaki-/resources/master/raspberrypi/pi3/Raspberry_Pi_3_B_and_B_plus.jpg" alt="Raspberry Pi 3 B" width="250px" align="right"/>
+<img src="https://raw.githubusercontent.com/unixunion/resources/master/raspberrypi/pi3/Raspberry_Pi_3_B_and_B_plus.jpg" alt="Raspberry Pi 3 B" width="250px" align="right"/>
 
 ## List of ebuilds
 
@@ -11,7 +11,7 @@ The overlay provides the following ebuilds:
 
 * **dev-embedded/rpi3-64bit-meta**
 
-   This is a convenience metapackage, which you can `emerge` to pull in the appropriate set of RPi3-specific packages (described below) from the overlay, when constructing (or updating) a system patterned after that in my [`gentoo-on-rpi3-64bit`](https://github.com/sakaki-/gentoo-on-rpi3-64bit) image. It is customized via the following USE flags:<a name="meta_use_flags"></a>
+   This is a convenience metapackage, which you can `emerge` to pull in the appropriate set of RPi3-specific packages (described below) from the overlay, when constructing (or updating) a system patterned after that in my [`gentoo-on-rpi3-64bit`](https://github.com/unixunion/gentoo-on-rpi3-64bit) image. It is customized via the following USE flags:<a name="meta_use_flags"></a>
    
    | USE flag | Default? | Effect |
    | -------- | --------:| ------:|
@@ -26,7 +26,7 @@ The overlay provides the following ebuilds:
 
 
 
-### Ebuilds related to the [`gentoo-on-rpi3-64bit`](https://github.com/sakaki-/gentoo-on-rpi3-64bit) image
+### Ebuilds related to the [`gentoo-on-rpi3-64bit`](https://github.com/unixunion/gentoo-on-rpi3-64bit) image
 
 * **sys-firmware/brcm43430-firmware** [upstream](https://github.com/RPi-Distro/firmware-nonfree)
   * Just provides a configuration file (`brcmfmac43430-sdio.txt`) that is required for the RPi3's integrated WiFi (the main firmware is provided already, by [`sys-kernel/linux-firmware`](http://packages.gentoo.org/package/sys-kernel/linux-firmware)). Now also provides the equivalent file `brcmfmac43455-sdio.txt`, for use with the RPi3 B+'s new [dual-band WiFi](https://www.raspberrypi.com.tw/tag/bcm2837/) setup (Cypress CYW43455), plus the `brcmfmac43455-sdio.clm_blob`.
@@ -38,13 +38,13 @@ The overlay provides the following ebuilds:
 * **sys-devel/portage-distccmon-gui**
   * Desktop file (and wrapper) to view Portage jobs with `distccmon-gui` (provided your user is a member of the `portage` group). Currently installed on the image, but _not_ controlled by the `rpi3-64bit-meta` metapackage.
 * **sys-kernel/bcmrpi3-kernel-bin**
-  * Provides ebuilds to install the available binary packages for the 64-bit `bcmrpi3_defconfig` Linux kernels (for the Raspberry Pi 3 model B and B+), which are updated weekly [here](https://github.com/sakaki-/bcmrpi3-kernel).
+  * Provides ebuilds to install the available binary packages for the 64-bit `bcmrpi3_defconfig` Linux kernels (for the Raspberry Pi 3 model B and B+), which are updated weekly [here](https://github.com/unixunion/bcmrpi3-kernel).
 * **sys-kernel/bcmrpi3-kernel-bis-bin**
-  * Provides ebuilds to install the available binary packages for (slightly tweaked versions of) the 64-bit `bcmrpi3_defconfig` Linux kernels (for the Raspberry Pi 3 model B and B+), which are updated weekly [here](https://github.com/sakaki-/bcmrpi3-kernel-bis).
+  * Provides ebuilds to install the available binary packages for (slightly tweaked versions of) the 64-bit `bcmrpi3_defconfig` Linux kernels (for the Raspberry Pi 3 model B and B+), which are updated weekly [here](https://github.com/unixunion/bcmrpi3-kernel-bis).
 * **media-libs/raspberrypi-userland**
   * Provides `raspberrypi-userland-1.20170721-r1.ebuild`, a (restricted) 64-bit build (`-DARM64=ON`). Provides e.g. `vcgencmd` etc., but the ebuild needs tidying, so please use with care ><
 * **sys-apps/rpi3-init-scripts**
-  * Provides a few simple init scripts for the [gentoo-on-rpi3-64bit](https://github.com/sakaki-/gentoo-on-rpi3-64bit) image (to autoexpand the root partition on first boot, inhibit XVideo, setup cache usage appropriate for a low-memory environment etc.).
+  * Provides a few simple init scripts for the [gentoo-on-rpi3-64bit](https://github.com/unixunion/gentoo-on-rpi3-64bit) image (to autoexpand the root partition on first boot, inhibit XVideo, setup cache usage appropriate for a low-memory environment etc.).
 * **sys-apps/rpi3-ondemand-cpufreq**
   * Provides the `rpi3-ondemand` OpenRC `sysinit` service, to switch the RPi3 from its (`bcmrpi3_defconfig`) default `powersave` CPU frequency governor, to `ondemand`, for better performance.
 * **x11-misc/rpi3-safecompositor**
@@ -105,7 +105,7 @@ The overlay provides the following ebuilds:
 ## Other ebuilds
 
 * **dev-lang/rust** [upstream](http://www.rust-lang.org/)
-  * Provides `rust-1.19.0-r1.ebuild`; adapted from the Gentoo tree version to build under `arm64`; build system also respects the `nativeonly` USE flag and user `MAKEOPTS` for efficiency (thanks to [NeddySeagoon](https://github.com/sakaki-/rpi3-overlay/commit/3abb46bcff04d9b66c8b3c50d309f199606ac0fa##commitcomment-23709642)). The system-programming language `dev-lang/rust` is a hard dependency for `www-client/firefox` versions 55 and above (as is `sys-devel/cargo`). However, as the (more modern) main Gentoo tree version now also builds, this is no longer necessary.
+  * Provides `rust-1.19.0-r1.ebuild`; adapted from the Gentoo tree version to build under `arm64`; build system also respects the `nativeonly` USE flag and user `MAKEOPTS` for efficiency (thanks to [NeddySeagoon](https://github.com/unixunion/rpi3-overlay/commit/3abb46bcff04d9b66c8b3c50d309f199606ac0fa##commitcomment-23709642)). The system-programming language `dev-lang/rust` is a hard dependency for `www-client/firefox` versions 55 and above (as is `sys-devel/cargo`). However, as the (more modern) main Gentoo tree version now also builds, this is no longer necessary.
 * **dev-util/cargo** [upstream](http://crates.io)
   * Provides `cargo-0.20.0.ebuild`, adapted from the Gentoo tree version to build under `arm64`. `dev-util/cargo` is the package manager for `dev-lang/rust`. However, as the (more modern) main Gentoo tree version now also builds, this is no longer necessary.
 * **x11-base/xorg-server** [upstream](https://www.x.org/wiki/)
@@ -119,7 +119,7 @@ The overlay provides the following ebuilds:
 * **net-fs/nfs-utils** [upstream](http://linux-nfs.org/)
   * Provides `nfs-utils-2.1.1-r2.ebuild`; this has been removed from the main Gentoo tree. However, as the (more modern) main Gentoo tree version is now also usable, this is no longer necessary.
 * **app-portage/rpi3-check-porthash**
-  * Provides a [`porthash`](https://github.com/sakaki-/porthash) signed hash check for the [isshoni.org](https://isshoni.org) rsync gentoo ebuild repository, implemented as a `repo.postsync.d` hook. NB not installed as of v1.3.0 of the image, as Gentoo's official `gemato` signature check is used instead; please see the release notes [here](https://github.com/sakaki-/gentoo-on-rpi3-64bit/releases/tag/v1.3.0).
+  * Provides a [`porthash`](https://github.com/unixunion/porthash) signed hash check for the [isshoni.org](https://isshoni.org) rsync gentoo ebuild repository, implemented as a `repo.postsync.d` hook. NB not installed as of v1.3.0 of the image, as Gentoo's official `gemato` signature check is used instead; please see the release notes [here](https://github.com/unixunion/gentoo-on-rpi3-64bit/releases/tag/v1.3.0).
 * **net-p2p/cpuminer-multi** [upstream](https://github.com/tpruvot/cpuminer-multi)
   * Provides `cpuminer-multi-1.3.3.ebuild`; a multi-threaded cryptocurrency CPU miner that builds on arm64. Not currently included on the image by default.
 * **net-misc/m-minerd** [upstream](https://github.com/magi-project/m-cpuminer-v2)
@@ -127,7 +127,7 @@ The overlay provides the following ebuilds:
 
 ## Custom profile
 
-The overlay also provides a custom profile, [`rpi3:default/linux/arm64/17.0/desktop/rpi3`](https://github.com/sakaki-/rpi3-overlay/tree/master/profiles/targets/rpi3), for use on the [`gentoo-on-rpi3-64bit`](https://github.com/sakaki-/gentoo-on-rpi3-64bit) image. For futher details, please see [these notes](https://github.com/sakaki-/gentoo-on-rpi3-64bit#profile).
+The overlay also provides a custom profile, [`rpi3:default/linux/arm64/17.0/desktop/rpi3`](https://github.com/unixunion/rpi3-overlay/tree/master/profiles/targets/rpi3), for use on the [`gentoo-on-rpi3-64bit`](https://github.com/unixunion/gentoo-on-rpi3-64bit) image. For futher details, please see [these notes](https://github.com/unixunion/gentoo-on-rpi3-64bit#profile).
 
 ## Installation
 
@@ -150,7 +150,7 @@ and put the following text in the file:
 
 location = /usr/local/portage/rpi3
 sync-type = git
-sync-uri = https://github.com/sakaki-/rpi3-overlay.git
+sync-uri = https://github.com/unixunion/rpi3-overlay.git
 priority = 100
 auto-sync = yes
 ```
